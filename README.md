@@ -2,6 +2,17 @@
 
 **Spending limits an AI agent can't talk its way past.** allowance lets an agent pay for things, including [x402](https://github.com/x402-foundation/x402) HTTP payments, from a smart account whose spending policy lives on-chain. If an invoice, a web page, or a tool result talks the agent into paying the wrong address or the wrong amount, the contract refuses. That holds even when the agent believes every word it reads, and even when someone steals the agent's key.
 
+<!-- portfolio-demo-videos -->
+## Watch the demo
+
+Use it when an AI assistant needs a controlled spending budget. The walkthrough has on-screen captions.
+
+![Captioned Allowance walkthrough](docs/demo/how-to.gif)
+
+[Download the narrated walkthrough](docs/demo/how-to.mp4?raw=true) · [Download the narrated overview](docs/demo/overview.mp4?raw=true)
+
+<!-- /portfolio-demo-videos -->
+
 [![CI](https://github.com/trailofblocks/allowance/actions/workflows/ci.yml/badge.svg)](https://github.com/trailofblocks/allowance/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
