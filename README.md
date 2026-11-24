@@ -1,11 +1,13 @@
 # allowance
 
-**Spending limits an AI agent can't talk its way past.** allowance lets an agent pay for things, including [x402](https://github.com/x402-foundation/x402) HTTP payments, from a smart account whose spending policy lives on-chain. If an invoice, a web page, or a tool result talks the agent into paying the wrong address or the wrong amount, the contract refuses. That holds even when the agent believes every word it reads, and even when someone steals the agent's key.
+**An on-chain spending policy for AI agent payments.** allowance lets an agent pay for things, including [x402](https://github.com/x402-foundation/x402) HTTP payments, from a smart account whose spending policy lives on-chain. The contract checks every payment against that policy. It is designed to refuse a payment the policy doesn't allow, even when an invoice, a web page, or a tool result talked the agent into it, or someone stole the agent's key.
+
+**Status:** a portfolio and research project. It has not been audited, and it should not be used with real funds.
 
 <!-- portfolio-demo-videos -->
 ## Watch the demo
 
-Use it when an AI assistant needs a controlled spending budget. The walkthrough has on-screen captions.
+It shows how an AI assistant's spending budget can be enforced on-chain. The walkthrough has on-screen captions.
 
 ![Captioned Allowance walkthrough](docs/demo/how-to.gif)
 
@@ -76,8 +78,8 @@ A queued request is checked again when it is approved: the recipient must still 
 | Which tool the agent calls, and with what arguments | The model, so possibly the attacker |
 | The agent's key | The MCP server process. The model never sees it, and the lab also assumes it can be stolen. |
 
-- **The agent can't change the policy.** The MCP server has no tools for it, and on-chain the module's setters act on `msg.sender`'s own state. An agent that calls `setRecipient(attacker, true)` edits an empty policy of its own. Its calls to the account's `execute` and `installModule` revert, because only the account (the owner) or the ERC-4337 EntryPoint may make them.
-- **The agent's key can't sign for the account.** Its signatures fail ERC-1271. The only signatures the account vouches for are the module's reservations, and those go through the full policy.
+- **The policy is set by the owner, not the agent.** The MCP server has no tools for it, and on-chain the module's setters act on `msg.sender`'s own state. An agent that calls `setRecipient(attacker, true)` edits an empty policy of its own. Its calls to the account's `execute` and `installModule` revert, because only the account (the owner) or the ERC-4337 EntryPoint may make them.
+- **The agent's key is not an account signer.** Its signatures fail ERC-1271. The only signatures the account vouches for are the module's reservations, and those go through the full policy.
 - **Some things are still possible.** A fooled agent, or a thief holding its key, can spend up to `autoPerPeriod` per window on *allowlisted* recipients without asking anyone. If one of those recipients is compromised, that is a real loss (lab attacks R5, R6, R10), and it is bounded. A fooled agent can also flood the co-signer with requests (R5 asked 30 times), and every one of them has to be rejected.
 
 ## x402

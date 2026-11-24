@@ -1,7 +1,7 @@
 {
   "name": "allowance",
   "version": "0.1.0",
-  "description": "Spending limits an AI agent can't talk its way past: an ERC-7579 policy module, a TypeScript SDK and MCP server for agent payments (including x402), and a prompt-injection red-team suite.",
+  "description": "An on-chain spending policy for AI agent payments (unaudited research project): an ERC-7579 policy module, a TypeScript SDK and MCP server for agent payments (including x402), and a prompt-injection red-team suite.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
